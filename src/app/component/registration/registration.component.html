@@ -1,0 +1,27 @@
+<app-menu></app-menu>
+<div class="container col-lg-6">
+  <h1 class="text-center">Registration</h1>
+  <div class="card">
+    <div class="card-body">
+      <form class="form-group">
+<!--        <div class="alert alert-success" *ngIf='answer.content'>{{answer.content}}</div>-->
+        <div class="form-group">
+          <label for="email">User Name :</label>
+          <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Enter User Name"
+                 name="username">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" [(ngModel)]="password_first" id="password_first" placeholder="Enter password"
+                 name="password">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" [(ngModel)]="password_second" id="password_second" placeholder="Repeat your password"
+                 name="password">
+        </div>
+        <button (click)=handleRegistration() class="btn btn-success">Registration</button>
+      </form>
+    </div>
+  </div>
+</div>

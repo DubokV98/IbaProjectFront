@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService} from '../auth.service';
+import { AuthService} from '../../service/authentification/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
@@ -37,5 +37,9 @@ export class LoginComponent implements OnInit {
       this.invalidLogin = true;
       this.loginSuccess = false;
     });
+  }
+  redirectToRegistration() {
+    console.log('in redirectToRegistration');
+    this.router.navigate(['/registration']);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {HelloWorldService} from '../hello-world.service';
+import {HelloWorldService} from '../../service/helloWorld/hello-world.service';
 
 @Component({
   selector: 'app-hello-world',
@@ -17,11 +17,7 @@ export class HelloWorldComponent implements OnInit {
 
   ngOnInit() {
     this.helloWorldService.helloWorldService().subscribe((res) => {
-      console.log('Контент в хелло ворлд', res.content);
       this.welcomeMessage = res.content;
     });
-  }
-  redirectToLogout() {
-    this.router.navigate(['/logout']);
   }
 }

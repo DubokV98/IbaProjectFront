@@ -3,33 +3,34 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { OtherComponent } from './other/other.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { HelloWorldComponent } from './hello-world/hello-world.component';
-import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
-import { MenuComponent } from './menu/menu.component';
-import { HttpInterceptorService } from './http-interceptor.service';
+import { HelloWorldComponent } from './component/hello-world/hello-world.component';
+import { LoginComponent } from './component/login/login.component';
+import { LogoutComponent } from './component/logout/logout.component';
+import { MenuComponent } from './component/menu/menu.component';
+import { HttpInterceptorService } from './service/httpInterceptor/http-interceptor.service';
 import { HttpModule } from '@angular/http';
-import {AuthService} from './auth.service';
+import {AuthService} from './service/authentification/auth.service';
+import { RegistrationComponent } from './component/registration/registration.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'login', component: LoginComponent},
   { path: 'hello-world', component: HelloWorldComponent},
   { path: 'logout', component: LogoutComponent},
+  { path: 'registration', component: RegistrationComponent},
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    OtherComponent,
     HelloWorldComponent,
     LoginComponent,
     LogoutComponent,
-    MenuComponent
+    MenuComponent,
+    RegistrationComponent
   ],
   imports: [
     HttpModule,
