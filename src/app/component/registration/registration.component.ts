@@ -14,8 +14,7 @@ export class RegistrationComponent implements OnInit {
   username: string;
   password_first: string;
   password_second: string;
-  answer: Answer;
-
+  message: string;
   constructor(private registrationService: RegistrationService) {
   }
 
@@ -23,7 +22,8 @@ export class RegistrationComponent implements OnInit {
   }
 
   handleRegistration() {
-    console.log('in handleRegistration');
-    this.registrationService.registration(this.username, this.password_first, this.password_second);
+    this.registrationService.registration(this.username, this.password_first, this.password_second).subscribe( (res: Answer) => {
+      this.message = res.content;
+    });
   }
 }

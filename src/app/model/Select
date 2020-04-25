@@ -1,0 +1,15 @@
+import {Structure} from './Structure';
+import {Value} from './Value';
+
+export class Select {
+
+  structures: Structure[];
+  valuesList: Value[];
+
+
+  constructor(structures: Structure[], values: Value[]) {
+    this.structures = structures;
+    this.valuesList = values;
+  }
+}
+

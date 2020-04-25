@@ -11,7 +11,8 @@ export class AuthService {
   // BASE_PATH: 'http://localhost:8080'
   USER_SESSION_ATTRIBUTE_NAME = 'authenticatedUser';
   USER_SESSION_PASSWORD = 'password';
-  USER_SESSION_ROLE = 'ROLE';
+  USER_SESSION_ROLE = 'role';
+  COOKIE = 'cookie';
 
   user: User;
 
@@ -27,10 +28,21 @@ export class AuthService {
       this.user.password = password;
       this.registerSuccessfulLogin(this.user.username, this.user.password, this.user.authorities);
     }));
+/*    return this.http.get('http://localhost:8080/token',
+      { headers: {authorization: this.createBasicAuthToken(username, password)}}).subscribe(data => {
+      const token = data['token'];
+      sessionStorage.setItem(this.COOKIE, token);
+      console.log('TOKEN-', token);
+      this.registerSuccessfulLogin(username, password);
+    });*/
   }
 
   createBasicAuthToken(username: string, password: string) {
     return 'Basic ' + window.btoa(username + ':' + password);
+  }
+
+  getCookie() {
+    return sessionStorage.getItem(this.COOKIE);
   }
 
   registerSuccessfulLogin(username, password, role) {

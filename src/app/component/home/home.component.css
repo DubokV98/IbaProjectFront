@@ -1,0 +1,16 @@
+.my-custom-scrollbar {
+  position: relative;
+  height: 200px;
+  overflow: auto;
+}
+.table-wrapper-scroll-y {
+  display: block;
+}
+.tree span:hover {
+  font-weight: bold;
+}
+
+.tree span {
+  cursor: pointer;
+}
+

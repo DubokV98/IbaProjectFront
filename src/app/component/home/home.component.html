@@ -1,0 +1,84 @@
+<app-menu></app-menu>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<div class="container">
+  Table from db - iba
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th>
+        Table
+      </th>
+      <th colspan="5">
+        Fields
+      </th>
+    </tr>
+    <tbody>
+    <tr *ngFor = "let tabl of table">
+      <td>
+        {{tabl.tableName}}
+      </td>
+      <td *ngFor = "let struct of tabl.structureList">
+        {{struct.field}} ({{struct.type}})
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert-success" *ngIf='message'>{{message}}</div>
+
+  <form>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Write request from db iba. Example: select * from iba.(tableName);</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" name="request" rows="3" [(ngModel)]="request"></textarea>
+    </div>
+    <button (click)="sendRequest()" class="btn btn-success">Send</button>
+  </form>
+  <br>
+  <select id="cd-dropdown" class="cd-select" >
+    <option disabled>History action</option>
+    <option (click)="takeTodayAction()">Today</option>
+    <option (click)="takeAllAction()">All</option>
+  </select>
+
+  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table id="dtDynamicVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0"
+           width="100%" >
+      <thead>
+      <tr>
+        <th class="th-sm" *ngFor = "let head of headersAction">{{head}}</th>
+      </tr>
+      </thead>
+      <tbody  *ngIf='actions'>
+      <tr *ngFor = "let action of actions">
+        <td>{{action.id}}</td>
+        <td>{{action.request}}</td>
+        <td>{{action.result}}</td>
+        <td>{{action.date}}</td>
+        <td>{{action.time}}</td>
+      </tr>
+
+      </tbody>
+    </table>
+ </div>
+
+  <br>
+
+  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table id="Select" class="table table-striped table-bordered table-sm" cellspacing="0"
+           width="100%" *ngIf='select'>
+      <thead>
+      <tr >
+      <th class="th-sm" *ngFor = "let structure of select.structures">{{structure.field}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor = "let masValues of select.valuesList">
+        <td *ngFor = "let stringValue of masValues.value">
+          {{stringValue}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

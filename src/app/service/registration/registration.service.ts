@@ -8,14 +8,12 @@ export class RegistrationService {
 
   constructor(private http: HttpClient) { }
 
-  answer: Answer;
   url = 'http://localhost:8080';
 
   registration(username: string, password_first: string, password_second: string) {
-    const body = new HttpParams().set('username', username).set('password_first', password_first).set('password_second', password_second);
-/*    {username: username, password_first: password_first, password_second: password_second};*/
-
-    return this.http.post(this.url + '/registration', body, this.getArgHeaders());
+    const body = new HttpParams().set('username', username).set('password_first', password_first)
+      .set('password_second', password_second);
+    return this.http.post( this.url + '/registration', body, this.getArgHeaders());
   }
   private getArgHeaders(): any {
     const httpOptions = {

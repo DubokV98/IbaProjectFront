@@ -10,17 +10,14 @@ export class HttpInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.authenticationService.isUserLoggedIn() && req.url.indexOf('auth') === -1) {
-      console.log('We here in interceptor!!!');
       const authReq = req.clone({
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
           'Authorization': 'Basic ' + window.btoa(this.authenticationService.getUsername() + ':' + this.authenticationService.getPassword())
         })
       });
-      console.log ('Login - ', this.authenticationService.getUsername(), 'password - ', this.authenticationService.getPassword());
       return next.handle(authReq);
     } else {
-      console.log('return req');
       return next.handle(req);
     }
   }
