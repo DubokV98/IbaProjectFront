@@ -22,13 +22,11 @@ export class HomeComponent implements OnInit {
               private router: Router, private homeService: HomeService) { }
 
   ngOnInit() {
-    this.homeService.getTableAndStructure().subscribe((res: Table[]) => {
-        this.table = res;
-      });
+    this.checkTablesAndStructure();
   }
 
     sendRequest() {
-      this.homeService.sendRequestToDatabase(this.request).subscribe((res: Select) => {
+    this.homeService.sendRequestToDatabase(this.request).subscribe((res: Select) => {
         this.select = res;
         console.log(this.select);
         this.takeTodayAction();
@@ -36,14 +34,12 @@ export class HomeComponent implements OnInit {
         this.takeTodayAction();
       });
     }
-/*  sendRequest() {
-    this.homeService.sendRequestToDatabase(this.request).subscribe((res: string[]) => {
-      this.message = res;
-      this.takeTodayAction();
-    }, error => {
-      this.takeTodayAction();
-    });
-  }*/
+
+    checkTablesAndStructure(){
+      this.homeService.getTableAndStructure().subscribe((res: Table[]) => {
+        this.table = res;
+      });
+    }
 
   takeTodayAction() {
     this.homeService.getTodayAction().subscribe((res: Action[]) => {
